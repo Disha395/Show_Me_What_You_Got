@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 public class StarServiceImpl implements StarService{
     private final StarRepository starRepository;
     private final DiceBearClient diceBearClient;
+
+    public StarServiceImpl(StarRepository starRepository, DiceBearClient diceBearClient) {
+        this.starRepository = starRepository;
+        this.diceBearClient = diceBearClient;
+    }
+
     @Override
     public List<Star> getStarsSortedByCreated() {
         return starRepository.findAllByOrderByCreatedDesc();
